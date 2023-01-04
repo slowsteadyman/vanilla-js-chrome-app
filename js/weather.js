@@ -2,7 +2,7 @@ const city = document.querySelector("#weather span:nth-child(1)");
 const weather = document.querySelector("#weather span:nth-child(2)");
 const tempReal = document.querySelector("#weather span:nth-child(3)");
 const tempFeel = document.querySelector("#weather span:nth-child(4)");
-
+const API_KEY = key.apikey;
 const CITY_KEY = "city";
 const WEATHER_KEY = "weather";
 const TEMPREAL_KEY = "tempReal";
@@ -24,7 +24,7 @@ if (citySaved && weatherSaved && tempRealSaved && tempFeelSaved) {
 function geoSucc(position) {
   const lati = position.coords.latitude;
   const longi = position.coords.longitude;
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${longi}&appid=${API_KEY}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${longi}&appid=%API_KEY&units=metric`;
   fetch(url)
     .then((response) => response.json())
     .then((item) => {
