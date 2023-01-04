@@ -10,6 +10,8 @@ const citySaved = localStorage.getItem(CITY_KEY);
 const weatherSaved = localStorage.getItem(WEATHER_KEY);
 const tempRealSaved = localStorage.getItem(TEMPREAL_KEY);
 const tempFeelSaved = localStorage.getItem(TEMPFEEL_KEY);
+/* const API_KEY = keys.apikey;
+ */
 
 if (citySaved && weatherSaved && tempRealSaved && tempFeelSaved) {
   city.innerText = `도시 : ${citySaved}`;
@@ -23,6 +25,7 @@ if (citySaved && weatherSaved && tempRealSaved && tempFeelSaved) {
 function geoSucc(position) {
   const lati = position.coords.latitude;
   const longi = position.coords.longitude;
+
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${longi}&appid=${keys.apikey}&units=metric`;
   fetch(url)
     .then((response) => response.json())
