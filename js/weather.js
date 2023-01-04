@@ -10,7 +10,7 @@ const citySaved = localStorage.getItem(CITY_KEY);
 const weatherSaved = localStorage.getItem(WEATHER_KEY);
 const tempRealSaved = localStorage.getItem(TEMPREAL_KEY);
 const tempFeelSaved = localStorage.getItem(TEMPFEEL_KEY);
-var API_KEY = config.apikey;
+const API_KEY = config.apikey;
 
 if (citySaved && weatherSaved && tempRealSaved && tempFeelSaved) {
   city.innerText = `도시 : ${citySaved}`;
