@@ -132,3 +132,8 @@ img {
   font-weight: 600;
   font-family: "Nanum Pen Script", cursive;
 }
+#weather a {
+  color: white;
+  text-decoration: none;
+  text-decoration: underline;
+}

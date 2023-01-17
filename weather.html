@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      const city = document.querySelector("#weather span:nth-child(1)");
+      <br />const weather = document.querySelector("#weather
+      span:nth-child(2)"); <br />const tempReal =
+      document.querySelector("#weather span:nth-child(3)"); <br />const tempFeel
+      = document.querySelector("#weather span:nth-child(4)"); <br />const
+      CITY_KEY = "city"; <br />const WEATHER_KEY = "weather"; <br />const
+      TEMPREAL_KEY = "tempReal"; <br />const TEMPFEEL_KEY = "tempFeel";
+      <br />const citySaved = localStorage.getItem(CITY_KEY); <br />const
+      weatherSaved = localStorage.getItem(WEATHER_KEY); <br />const
+      tempRealSaved = localStorage.getItem(TEMPREAL_KEY); <br />const
+      tempFeelSaved = localStorage.getItem(TEMPFEEL_KEY); <br />const API_KEY =
+      "key"<br /><br />if (citySaved && weatherSaved && tempRealSaved &&
+      tempFeelSaved) { <br />
+      city.innerText = `도시 : ${citySaved}`; <br />
+      weather.innerText = `날씨 : ${weatherSaved}`; <br />
+      tempReal.innerText = `온도 : <br />
+      ${tempRealSaved}도`; <br />
+      tempFeel.innerText = `체감 : ${tempFeelSaved}도`; <br />} else { <br />
+      navigator.geolocation.getCurrentPosition(geoSucc, geoFail); <br />}
+      <br /><br />function geoSucc(position) { <br />
+      const lati = position.coords.latitude; <br />
+      const longi = position.coords.longitude; <br />
+      const url =
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${longi}&appid=${API_KEY}&units=metric`;
+      <br />
+      fetch(url) <br />
+      .then((response) => response.json()) <br />
+      .then((item) => { <br />
+      city.innerText = `도시 : ${item.name}`; <br />
+      weather.innerText = `날씨 : <br />
+      ${item.weather[0].description}`; <br />
+      tempReal.innerText = `온도 : <br />
+      ${item.main.temp}도`; <br />
+      tempFeel.innerText = `체감 : <br />
+      ${item.main.feels_like}도`; <br />
+      saveWeather(item); <br />
+      }); <br />} <br /><br />function geoFail() { <br />
+      alert("위치 정보 제공을 허가해 주세요"); <br />} <br /><br />function
+      saveWeather(item) { <br />
+      localStorage.setItem(CITY_KEY, item.name); <br />
+      localStorage.setItem(WEATHER_KEY, item.weather[0].description); <br />
+      localStorage.setItem(TEMPREAL_KEY, item.main.temp); <br />
+      localStorage.setItem(TEMPFEEL_KEY, item.main.feels_like); <br />}
+    </p>
+  </body>
+</html>
